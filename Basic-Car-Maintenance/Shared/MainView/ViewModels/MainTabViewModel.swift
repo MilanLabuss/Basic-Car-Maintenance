@@ -29,9 +29,8 @@ class MainTabViewModel {
         
         do {
           let snapshot = try await query.getDocuments()
-          let documents = snapshot.documents
             
-            let newAlert = documents
+            let newAlert = snapshot.documents
                 .compactMap {
                     do {
                         return try $0.data(as: AlertItem.self)
@@ -51,7 +50,5 @@ class MainTabViewModel {
         } catch {
           print("Error getting documents: \(error)")
         }
-        
-
     }
 }
